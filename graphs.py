@@ -9,9 +9,9 @@ results = {
     },
 
     "Backtracking": {
-        "N": [],    
-        "avg_times": [],
-        "avg_checks": []
+        "N": [4, 8, 16],    
+        "avg_times": [751.7338, 7313.0131, 1842375.6957],
+        "avg_checks": [192, 4950, 3695031]
     },
 
     "MAC": {
