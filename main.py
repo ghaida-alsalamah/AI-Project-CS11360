@@ -1,4 +1,4 @@
-from bt import backtracking
+from backtracking import backtracking
 from forward_checking import forward_checking
 #from mac import mac
 import helper_functions as hf
