@@ -1,6 +1,6 @@
 
 from forward_checking import forward_checking
-# from bt import backtracking
+from bactracing import backtracking
 # from mac import mac
 
 
@@ -40,7 +40,7 @@ def main():
 
         if choice == "1":
             print("\nBacktracking selected.")
-            #algorithm = backtracking
+            algorithm = backtracking
 
         elif choice == "2":
             print("\nForward Checking selected.")
