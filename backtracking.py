@@ -36,4 +36,4 @@ def backtracking(N):
 
     end_time = time.time()
 
-    return assignment, (end_time - start_time) * 1000, hf.checks_count
+    return assignment, end_time - start_time, hf.checks_count
