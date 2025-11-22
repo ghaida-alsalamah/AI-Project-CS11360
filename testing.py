@@ -1,6 +1,6 @@
 
 from forward_checking import forward_checking
-# from bt import backtracking
+from backtracking import backtracking
 # from mac import mac
 
 
@@ -40,7 +40,7 @@ def main():
 
         if choice == "1":
             print("\nBacktracking selected.")
-            #algorithm = backtracking
+            algorithm = backtracking
 
         elif choice == "2":
             print("\nForward Checking selected.")
@@ -71,9 +71,9 @@ def main():
             best_t, avg_t, worst_t, best_c, avg_c, worst_c = test_algorithm(algorithm, N, runs)
 
             print(f"N = {N}")
-            print(f"  Best time   : {best_t * 1000:.4f} seconds")
-            print(f"  Avg time    : {avg_t * 1000:.4f} seconds")
-            print(f"  Worst time  : {worst_t * 1000:.4f} seconds")
+            print(f"  Best time   : {best_t * 1000:.4f} ms")
+            print(f"  Avg time    : {avg_t * 1000:.4f} ms")
+            print(f"  Worst time  : {worst_t * 1000:.4f} ms")
             print(f"  Best checks : {best_c}")
             print(f"  Avg checks  : {int(avg_c)}")
             print(f"  Worst checks: {worst_c}\n")

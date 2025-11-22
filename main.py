@@ -41,7 +41,7 @@ def main():
                 solution, t, checks = forward_checking(N)
                 print("Solution:", solution)
                 hf.print_board(solution, N)
-                print(f"Time: {t * 1000:.6f} second")
+                print(f"Time: {t * 1000:.6f} ms")
                 print("Checks:", checks)
 
             # MAC
