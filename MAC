@@ -1,0 +1,82 @@
+import time
+import helper_functions as hf
+
+#==========================================================  MAC  ==========================================================
+
+
+
+def revise(Xi, Xj, domains):
+    removed = False
+    to_delete = []
+
+    for xi in domains[Xi]:
+        supported = False
+        for yj in domains[Xj]:
+            if not hf.check_conflict(Xi, xi, Xj, yj):
+                supported = True
+                break
+
+        if not supported:
+            to_delete.append(xi)
+
+    for value in to_delete:
+        domains[Xi].remove(value)
+        removed = True
+
+    return removed
+
+def ac3(domains):
+    queue = [(Xi, Xj) for Xi in domains for Xj in domains if Xi != Xj]
+
+    while queue:
+        Xi, Xj = queue.pop(0)
+
+        if revise(Xi, Xj, domains):
+            if len(domains[Xi]) == 0:
+                return False   # domain wipeout
+
+            for Xk in domains:
+                if Xk != Xi and Xk != Xj:
+                    queue.append((Xk, Xi))
+
+    return True
+
+def mac_backtrack(assignment, domains, N):
+
+    if len(assignment) == N:
+        return True
+
+    row = hf.select_variable_MRV(assignment, domains)
+
+    for val in hf.order_values_LCV(row, domains, assignment, N):
+
+        if hf.is_consistent(assignment, row, val):
+
+            assignment[row] = val
+            old_domains = hf.copy_domains(domains)
+            
+            domains[row] = [val]
+
+            if ac3(domains, assignment):
+
+                if mac_backtrack(assignment, domains, N):
+                    return True
+
+            
+            domains.clear()
+            domains.update(old_domains)
+            del assignment[row]
+
+    return False
+
+def MAC(N):
+    hf.checks_count = 0   # reset REAL counter
+    start_time = time.time()
+
+    domains = hf.generate_random_start(N)
+    assignment = {}
+
+    mac_backtrack(assignment, domains, N)
+
+    end_time = time.time()
+    return assignment, (end_time - start_time)*1000, hf.checks_count
