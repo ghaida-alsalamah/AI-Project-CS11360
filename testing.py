@@ -1,7 +1,7 @@
 
 from forward_checking import forward_checking
 from backtracking import backtracking
-# from mac import mac
+ from MAC import MAC
 
 
 def test_algorithm(algorithm, N, runs):
@@ -48,7 +48,7 @@ def main():
 
         elif choice == "3":
             print("\nMAC selected.")
-            #algorithm = mac
+            algorithm = mac
 
         elif choice == "4":
             print("Exiting...")
