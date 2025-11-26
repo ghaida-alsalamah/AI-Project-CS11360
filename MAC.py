@@ -79,4 +79,4 @@ def MAC(N):
     mac_backtrack(assignment, domains, N)
 
     end_time = time.time()
-    return assignment, (end_time - start_time)*1000, hf.checks_count
+    return assignment, end_time - start_time, hf.checks_count

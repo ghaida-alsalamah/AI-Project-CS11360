@@ -46,8 +46,8 @@ def main():
 
             # MAC
             elif choice == "3":
-               print("\nRunning MAC...")
-                solution, t, checks = Mac(N)
+                print("\nRunning MAC...")
+                solution, t, checks = MAC(N)
                 print("Solution:", solution)
                 hf.print_board(solution, N)
                 print(f"Time: {t * 1000:.6f} ms")
