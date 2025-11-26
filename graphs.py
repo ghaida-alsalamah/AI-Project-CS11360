@@ -15,9 +15,9 @@ results = {
     },
 
     "MAC": {
-        "N": [],        
-        "avg_times": [],
-        "avg_checks": []
+        "N": [4, 8, 16, 32, 64],        
+        "avg_times": [0.636339, 1.510382, 13.465643, 209.7811, 9713.0420],
+        "avg_checks": [175, 3275, 64173, 965492, 13350741]
     }
 }
 
@@ -45,6 +45,32 @@ def plot_checks(N, checks, title):
     plt.tight_layout()
     plt.show()
 
+# This function comparison of average times for all algorithms.
+def plot_all_times(results):
+    plt.figure()
+    for name, data in results.items():
+        plt.plot(data["N"], data["avg_times"], marker='o', label=name)
+    plt.xlabel("Board Size (N)")
+    plt.ylabel("Average Time (seconds)")
+    plt.title("Comparison: Average Time vs N")
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+
+# This function comparison of average checks for all algorithms.
+def plot_all_checks(results):
+    plt.figure()
+    for name, data in results.items():
+        plt.plot(data["N"], data["avg_checks"], marker='o', label=name)
+    plt.xlabel("Board Size (N)")
+    plt.ylabel("Average Constraint Checks")
+    plt.title("Comparison: Average Checks vs N")
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 
 def main():
 
@@ -81,7 +107,9 @@ def main():
         print("Choose a plot to display:")
         print("1. Average Time vs N")
         print("2. Average Checks vs N")
-        print("3. Back")
+        print("3. Compare ALL Times")
+        print("4. Compare ALL Checks")
+        print("5. Back")
 
         plot_choice = input("Your choice: ")
 
@@ -92,6 +120,11 @@ def main():
             plot_checks(data["N"], data["avg_checks"], f"{algo} – Average Checks vs N")
 
         elif plot_choice == "3":
+            plot_all_times(results)
+        elif plot_choice == "4":
+            plot_all_checks(results)
+
+        elif plot_choice == "5":
             continue
 
         else:
