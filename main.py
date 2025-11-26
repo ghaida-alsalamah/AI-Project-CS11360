@@ -1,6 +1,6 @@
 from backtracking import backtracking
 from forward_checking import forward_checking
-#from mac import mac
+from MAC import MAC
 import helper_functions as hf
 
 
@@ -46,8 +46,12 @@ def main():
 
             # MAC
             elif choice == "3":
-                print("\nRunning MAC...")
-                print("Not implemented yet.")
+               print("\nRunning MAC...")
+                solution, t, checks = Mac(N)
+                print("Solution:", solution)
+                hf.print_board(solution, N)
+                print(f"Time: {t * 1000:.6f} ms")
+                print("Checks:", checks)
 
             # NEW N
             elif choice == "4":
