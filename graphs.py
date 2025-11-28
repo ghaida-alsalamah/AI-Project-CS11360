@@ -2,32 +2,34 @@ import matplotlib.pyplot as plt
 
 # Here we store the testing results for each algorithm.
 results = {
-    "Forward Checking": {
-        "N": [4, 8, 16, 32, 64],
-        "avg_times": [0.0, 4.0282, 6.3412, 38.5707, 920.8952],
-        "avg_checks": [118, 1449, 14477, 192409, 3045307]
+    "Backtracking": {
+        "N": [4, 8, 16, 20],
+        "avg_times": [0.0769, 2.5729, 796.6400, 5166.2863],
+        "avg_checks": [179, 6593, 6859329, 43609592]
     },
 
-    "Backtracking": {
-        "N": [4, 8, 16],    
-        "avg_times": [751.7338, 7313.0131, 1842375.6957],
-        "avg_checks": [192, 4950, 3695031]
+    "Forward Checking": {
+        "N": [4, 8, 16, 20, 32, 64],
+        "avg_times": [0.1500, 0.7571, 4.4687, 9.0303, 34.9870, 437.6198],
+        "avg_checks": [108, 1329, 15117, 34480, 193259, 2892255]
     },
 
     "MAC": {
-        "N": [4, 8, 16, 32, 64],        
-        "avg_times": [0.636339, 1.510382, 13.465643, 209.7811, 9713.0420],
-        "avg_checks": [175, 3275, 64173, 965492, 13350741]
+        "N": [4, 8, 16, 20, 32, 64],
+        "avg_times": [0.1078, 1.1622, 8.2347, 18.5038, 82.4607, 2119.9937],
+        "avg_checks": [107, 2146, 30426, 65983, 400092, 6326681]
     }
 }
+
 
 
 # This function draws the time plot.
 def plot_time(N, times, title):
     plt.figure()
     plt.plot(N, times)
+    plt.yscale("log")
     plt.xlabel("Board Size (N)")
-    plt.ylabel("Average Time (seconds)")
+    plt.ylabel("Average Time (ms)")
     plt.title(title)
     plt.grid(True)
     plt.tight_layout()
@@ -38,6 +40,7 @@ def plot_time(N, times, title):
 def plot_checks(N, checks, title):
     plt.figure()
     plt.plot(N, checks)
+    plt.yscale("log")
     plt.xlabel("Board Size (N)")
     plt.ylabel("Average Constraint Checks")
     plt.title(title)
@@ -50,8 +53,9 @@ def plot_all_times(results):
     plt.figure()
     for name, data in results.items():
         plt.plot(data["N"], data["avg_times"], marker='o', label=name)
+    plt.yscale("log")
     plt.xlabel("Board Size (N)")
-    plt.ylabel("Average Time (seconds)")
+    plt.ylabel("Average Time (ms)")
     plt.title("Comparison: Average Time vs N")
     plt.grid(True)
     plt.legend()
@@ -64,6 +68,7 @@ def plot_all_checks(results):
     plt.figure()
     for name, data in results.items():
         plt.plot(data["N"], data["avg_checks"], marker='o', label=name)
+    plt.yscale("log")
     plt.xlabel("Board Size (N)")
     plt.ylabel("Average Constraint Checks")
     plt.title("Comparison: Average Checks vs N")
